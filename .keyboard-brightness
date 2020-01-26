@@ -1,0 +1,4 @@
+#!bin/sh
+cb=$(cat /sys/class/leds/asus::kbd_backlight/brightness)
+nb=$(($cb + 1))
+echo $nb | sudo tee /sys/class/leds/asus::kbd_backlight/brightness

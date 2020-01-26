@@ -1,0 +1,4 @@
+#!/bin/bash
+cb=$(cat /sys/class/backlight/intel_backlight/brightness)
+nb=$(($cb - 1000))
+echo $nb | sudo tee /sys/class/backlight/intel_backlight/brightness

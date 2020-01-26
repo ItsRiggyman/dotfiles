@@ -1,0 +1,320 @@
+##### i3-config / RESLOVED  #######################
+
+##### GENERAL ##################################### 
+
+set $mod Mod4
+
+font pango:Hasklug Nerd Font Mono 9
+
+# APP VARIABLES
+set $browser	google-chrome-stable
+set $music  	spotify
+set $term   	urxvt
+
+# DIR VARIABLES
+set $bin ~/bin
+
+# RESIZE VARIABLES
+set $center move absolute position center
+
+# FLOATING
+floating_modifier $mod
+
+set $thick 8
+# border_radius 0
+
+# DEFAULT BORDER
+for_window [class="^.*"] border pixel 0
+for_window [title="^.*"] border pixel 0
+
+# APPLICATION BORDERS
+for_window [class="Emacs"] border pixel $thick
+for_window [class="URxvt"] border pixel $thick
+for_window [class="st"] border pixel $thick
+#for_window [class="XTerm"] border pixel $thick
+
+# FLOATING APPLICATIONS
+for_window [class="Orca"] floating enable
+for_window [class="ffplay"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="mupen64plus"] floating enable
+for_window [class="dolphin-emu"] floating enable
+
+# GAP VARIABLES
+set $inner 32 
+set $outer 0
+
+# SET GAPS
+gaps inner $inner
+gaps outer $outer
+
+# TOGGLE GAPS
+bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer
+bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
+
+# TERMINAL BINDS
+bindsym $mod+Return exec $term -e tmux
+bindsym $mod+Shift+Return exec $term -e tmux new-session -A -s main
+bindsym $mod+Ctrl+Return exec $term
+bindsym $mod+Shift+Ctrl+Return exec xterm -class blank
+
+# SCRATCHPAD
+bindsym $mod+BackSpace scratchpad show
+bindsym $mod+Shift+BackSpace floating enable, move position $inner px $inner px, move scratchpad
+bindsym $mod+Ctrl+BackSpace exec $term -e tmux new-session -A -s scratch 
+
+# KILL
+bindsym $mod+x      kill
+bindsym $mod+Ctrl+x exec rofi-exit
+
+# RELOAD 
+bindsym $mod+Ctrl+c reload
+# RESTART
+bindsym $mod+Ctrl+r restart
+
+bindsym $mod+w layout toggle split
+bindsym $mod+Ctrl+w layout stacked
+bindsym $mod+Shift+w layout tabbed
+title_align center
+
+# MEDIA KEYS
+bindsym F12 exec pulseaudio-ctl up 10
+bindsym F11 exec pulseaudio-ctl down 10
+bindsym F10 exec pulseaudio-ctl set 0
+bindsym F6 exec zsh ~/.brightness
+bindsym F5 exec zsh ~/.brightness1
+bindsym F4 exec zsh ~/.keyboard-brightness
+bindsym F3 exec zsh ~/.keyboard-brightness1
+
+##### MOVEMENT ####################################
+
+# FOCUS
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# MOVE
+bindsym $mod+Ctrl+h move left
+bindsym $mod+Ctrl+j move down
+bindsym $mod+Ctrl+k move up
+bindsym $mod+Ctrl+l move right
+
+bindsym $mod+Ctrl+Left move left
+bindsym $mod+Ctrl+Down move down
+bindsym $mod+Ctrl+Up move up
+bindsym $mod+Ctrl+Right move right
+
+# RESIZE
+bindsym $mod+Shift+h          resize shrink width  10px or 10 ppt
+bindsym $mod+Shift+j          resize shrink height 10px or 10 ppt
+bindsym $mod+Shift+k          resize grow height   10px or 10 ppt
+bindsym $mod+Shift+l          resize grow width    10px or 10 ppt
+
+bindsym $mod+Shift+Left       resize shrink width  10px or 10 ppt
+bindsym $mod+Shift+Down       resize shrink height 10px or 10 ppt
+bindsym $mod+Shift+Up         resize grow height   10px or 10 ppt
+bindsym $mod+Shift+Right      resize grow width    10px or 10 ppt
+
+bindsym $mod+Shift+Ctrl+h     resize shrink width  1px or 1 ppt
+bindsym $mod+Shift+Ctrl+j     resize shrink height 1px or 1 ppt
+bindsym $mod+Shift+Ctrl+k     resize grow height   1px or 1 ppt
+bindsym $mod+Shift+Ctrl+l     resize grow width    1px or 1 ppt
+
+bindsym $mod+Shift+Ctrl+Left  resize shrink width  1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Down  resize shrink height 1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Up    resize grow height   1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Right resize grow width    1px or 1 ppt
+
+# VERTICAL SPLIT
+bindsym $mod+v split v
+
+# HORIZONTAL SPLIT
+bindsym $mod+b split h
+
+# FULLSCREEN
+bindsym $mod+f fullscreen toggle
+
+# TOGGLE FLOATING
+bindsym $mod+space floating toggle; $center
+
+# MODE TOGGLE
+bindsym $mod+Shift+space border pixel 5
+#bindsym $mod+Shift+space focus mode_toggle
+
+# PAPER MODE
+bindsym $mod+Ctrl+space floating toggle; resize set 700px 975px; $center
+
+# CENTER FLOATING
+bindsym $mod+c $center
+
+##### WORKSPACES ##################################
+
+# WORKSPACES
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+#set $ws4 "4"
+#set $ws5 "5"
+#set $ws6 "6"
+#set $ws7 "7"
+#set $ws8 "8"
+#set $ws9 "9"
+#set $ws10 "10"
+
+# SWITCH TO WORKSPACE
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+#bindsym $mod+4 workspace $ws4
+#bindsym $mod+5 workspace $ws5
+#bindsym $mod+6 workspace $ws6
+#bindsym $mod+7 workspace $ws7
+#bindsym $mod+8 workspace $ws8
+#bindsym $mod+9 workspace $ws9
+#bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Mod2+KP_1 workspace $ws1
+bindsym $mod+Mod2+KP_2 workspace $ws2
+bindsym $mod+Mod2+KP_3 workspace $ws3
+#bindsym $mod+Mod2+KP_4 workspace $ws4
+#bindsym $mod+Mod2+KP_5 workspace $ws5
+#bindsym $mod+Mod2+KP_6 workspace $ws6
+#bindsym $mod+Mod2+KP_7 workspace $ws7
+#bindsym $mod+Mod2+KP_8 workspace $ws8
+#bindsym $mod+Mod2+KP_9 workspace $ws9
+#bindsym $mod+Mod2+KP_0 workspace $ws10
+
+# MOVE WINDOW TO WORKSPACE
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+#bindsym $mod+Ctrl+4 move container to workspace $ws4
+#bindsym $mod+Ctrl+5 move container to workspace $ws5
+#bindsym $mod+Ctrl+6 move container to workspace $ws6
+#bindsym $mod+Ctrl+7 move container to workspace $ws7
+#bindsym $mod+Ctrl+8 move container to workspace $ws8
+#bindsym $mod+Ctrl+9 move container to workspace $ws9
+#bindsym $mod+Ctrl+0 move container to workspace $ws10
+
+bindsym $mod+Ctrl+Mod2+KP_1 move container to workspace $ws1
+bindsym $mod+Ctrl+Mod2+KP_2 move container to workspace $ws2
+bindsym $mod+Ctrl+Mod2+KP_3 move container to workspace $ws3
+#bindsym $mod+Ctrl+Mod2+KP_4 move container to workspace $ws4
+#bindsym $mod+Ctrl+Mod2+KP_5 move container to workspace $ws5
+#bindsym $mod+Ctrl+Mod2+KP_6 move container to workspace $ws6
+#bindsym $mod+Ctrl+Mod2+KP_7 move container to workspace $ws7
+#bindsym $mod+Ctrl+Mod2+KP_8 move container to workspace $ws8
+#bindsym $mod+Ctrl+Mod2+KP_9 move container to workspace $ws9
+#bindsym $mod+Ctrl+Mod2+KP_0 move container to workspace $ws10
+
+##### COLORS #######################################
+
+# XRESOURCES
+set_from_resource $fg foreground
+set_from_resource $bg background 
+
+# CLASS                 BORDER  BACK    TEXT    INDICATOR
+client.focused          $bg     $bg     $fg     $bg
+client.focused_inactive $bg     $bg     $fg     $bg 
+client.unfocused        $bg     $bg     $fg     $bg
+client.urgent           $bg     $bg     $fg     $bg 
+client.placeholder      $bg     $bg     $fg     $bg 
+
+##### TOOLS ########################################
+
+# SCREENSHOT
+set $shots ~/pictures/screenshots
+
+bindsym $mod+Print exec maim --hidecursor $shots/$(date +%s).png
+bindsym $mod+Ctrl+Print exec maim -s $shots/$(date +%s).png
+bindsym $mod+Shift+Print exec feh $(last $shots)
+
+# CAST
+set $casts ~/videos/casts
+
+bindsym $mod+F12       exec ~/bin/cast
+bindsym $mod+Ctrl+F12  exec ~/bin/cast -s 
+#bindsym $mod+Shift+F12 exec
+
+bindsym $mod+F11       exec pkill ffmpeg
+bindsym $mod+Ctrl+F11  exec anypaste -x -s -p streamable $(last $casts)
+bindsym $mod+Shift+F11 exec ffplay -loop 0 $(last $casts)
+
+# MEDIA CONTROLS
+bindsym $mod+slash  exec playerctl play-pause
+bindsym $mod+comma  exec playerctl previous
+bindsym $mod+period exec playerctl next
+
+bindsym $mod+Ctrl+slash  exec amixer sset Master toggle
+bindsym $mod+Ctrl+comma  exec amixer sset Master 5%-
+bindsym $mod+Ctrl+period exec amixer sset Master 5%+
+
+bindsym $mod+Shift+slash  exec amixer set Capture toggle
+bindsym $mod+Shift+comma  exec amixer set Capture 5%-
+bindsym $mod+Shift+period exec amixer set Capture 5%+
+
+# ROFI
+bindsym $mod+d      exec rofi -show drun -theme list -display-window "●"
+bindsym $mod+Ctrl+d  exec rofi-dict
+#bindsym $mod+Shift+d exec
+
+# BACKGROUND
+#exec_always hsetroot -add "#c79081" -add "#dfa579" -gradient 0
+#exec_always hsetroot -add "#DAD299" -add "#B0DAB9" -gradient 0
+#exec_always hsetroot -solid "#c79081"
+set_from_resource $top color6
+set_from_resource $bot color5
+exec_always hsetroot -add "$top" -add "$bot" -gradient 0
+
+
+##### APP BINDS ###################################
+
+bindsym $mod+n       exec $browser
+bindsym $mod+Ctrl+n  exec rofi-search "$browser --new-window"
+bindsym $mod+Shift+n exec rofi-web    "$browser --new-window" 
+
+bindsym $mod+m       exec spotify
+bindsym $mod+Ctrl+m  exec steam
+bindsym $mod+Shift+m exec discord
+
+bindsym $mod+t       exec rofi-twitch -f
+bindsym $mod+Ctrl+t  exec rofi-twitch -d
+bindsym $mod+Shift+t exec rofi-twitch
+
+#bindsym $mod+y       exec
+#bindsym $mod+Ctrl+y  exec
+#bindsym $mod+Shift+y exec
+
+bindsym $mod+u       exec dolphin-emu
+#bindsym $mod+Ctrl+u  exec 
+#bindsym $mod+Shift+u exec 
+
+bindsym $mod+i       exec emacsclient -c
+bindsym $mod+Ctrl+i  exec pkill emacs && emacs --daemon && emacsclient -c
+bindsym $mod+Shift+i exec emacs -ib 16
+
+bindsym $mod+o       exec rofi-now
+bindsym $mod+Ctrl+o  exec rofi-vol
+bindsym $mod+Shift+o exec rofi-bat
+
+##### LAUNCH ###################################### 
+
+# STARTUP
+exec --no-startup-id emacs --daemon
+exec --no-startup-id unclutter -grab
+exec --no-startup-id $term -e sh "sudo wifi-menu; ntpd -qg; exit"
+
+# RELOAD
+exec_always --no-startup-id ~/code/compton/build/src/compton
+#exec_always --no-startup-id compton
+exec_always --no-startup-id dunst
+exec_always xrdb -merge ~/.Xresoureces 
+#exec_always xrandr --auto --output eDP-1 --below HDMI-1 --auto
+exec_always xmodmap -e "clear lock"
+exec_always xmodmap -e "keysym Caps_Lock = Escape"

@@ -1,0 +1,1 @@
+/home/riggyman/dotfiles/.config/i3/i3scaling.sh

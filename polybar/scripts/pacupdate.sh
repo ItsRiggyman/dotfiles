@@ -1,0 +1,1 @@
+/home/riggyman/dotfiles/.config/polybar/scripts/pacupdate.sh
